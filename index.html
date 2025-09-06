@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Resume Screener</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>📄 Smart Resume Screener</h1>
+  </header>
+
+  <main>
+    <!-- Upload Section -->
+    <section class="upload-box">
+      <h2>Upload Resume</h2>
+      <input type="file" id="resumeUpload" accept=".pdf,.doc,.docx">
+      <p id="fileName">No file chosen</p>
+      <button onclick="processResume()">Analyze Resume</button>
+    </section>
+
+    <!-- Results Section -->
+    <section class="results">
+      <h2>Analysis Results</h2>
+      <div id="output">
+        <p>Upload a resume to see results here...</p>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const fileInput = document.getElementById("resumeUpload");
+    const fileName = document.getElementById("fileName");
+
+    fileInput.addEventListener("change", () => {
+      fileName.textContent = fileInput.files[0]?.name || "No file chosen";
+    });
+
+    function processResume() {
+      const output = document.getElementById("output");
+      if (!fileInput.files.length) {
+        output.innerHTML = "<p style='color:red;'>⚠ Please upload a resume first!</p>";
+        return;
+      }
+      // Dummy example (in real app, backend would analyze resume)
+      output.innerHTML = `
+        <p><strong>Candidate Name:</strong> John Doe</p>
+        <p><strong>Skills Detected:</strong> HTML, CSS, JavaScript, Python</p>
+        <p><strong>Experience:</strong> 3 Years</p>
+        <p><strong>Match Score:</strong> 85%</p>
+      `;
+    }
+  </script>
+</body>
+</html>
